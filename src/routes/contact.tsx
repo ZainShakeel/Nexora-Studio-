@@ -8,6 +8,14 @@ import { Mail, MessageCircle, Calendar } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
+import { WhyNexora, HowWeWork } from "@/components/why-and-how";
+
+const WHY = [
+  { title: "Reply within 24h", desc: "Real humans, real plans — never auto-responders." },
+  { title: "Free strategy call", desc: "30 minutes of value, zero pressure to commit." },
+  { title: "Senior team", desc: "You'll talk to the people actually building your project." },
+  { title: "Transparent pricing", desc: "Clear scope, clear timeline, clear investment." },
+];
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -96,6 +104,9 @@ function ContactPage() {
           </form>
         </div>
       </section>
+
+      <WhyNexora items={WHY} />
+      <HowWeWork />
     </div>
   );
 }

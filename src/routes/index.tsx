@@ -2,20 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
-import { ArrowRight, Code2, Palette, Target, Sparkles, BarChart3, Layers, Globe } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { SERVICES } from "@/data/services";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
-
-const services = [
-  { icon: Code2, title: "WordPress Development", desc: "Custom themes, plugins and headless builds." },
-  { icon: Layers, title: "Frontend Development", desc: "React, Angular and Next.js at production scale." },
-  { icon: Palette, title: "UI/UX Design", desc: "Conversion-focused interfaces, end to end." },
-  { icon: Globe, title: "Webflow Websites", desc: "Marketing sites your team can actually edit." },
-  { icon: Target, title: "PPC Management", desc: "Google, Meta & LinkedIn campaigns built to scale." },
-  { icon: BarChart3, title: "Lead Generation", desc: "Funnels engineered for qualified pipeline." },
-];
 
 const reasons = [
   { title: "Code + Campaigns", desc: "We're the only team you need — engineering and marketing under one roof." },
@@ -25,9 +17,10 @@ const reasons = [
 ];
 
 const featured = [
+  "https://dodgerblue-bat-963544.hostingersite.com/",
   "https://ursolution.co/",
   "https://growtraq.com/",
-  "https://thebrandsspot.com/",
+  "https://ebillingworks.com/",
 ];
 
 function Index() {
@@ -70,15 +63,22 @@ function Index() {
             title={<>Everything you need to <span className="text-gradient">grow online</span></>}
             subtitle="A full-stack growth team — engineering, design, and performance marketing."
           />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <div key={s.title} className="group rounded-2xl border border-border bg-card p-7 shadow-card transition-all hover:-translate-y-1 hover:shadow-elegant">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <s.icon className="h-6 w-6" />
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {SERVICES.map((s) => (
+              <Link
+                key={s.slug}
+                to={`/services/${s.slug}`}
+                className="group flex flex-col rounded-2xl border border-border bg-card p-8 shadow-card transition-all hover:-translate-y-1 hover:shadow-elegant"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <s.icon className="h-7 w-7" />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-              </div>
+                <h3 className="mt-6 text-xl font-semibold">{s.title}</h3>
+                <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.short}</p>
+                <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                  Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -116,7 +116,7 @@ function Index() {
               <Link to="/portfolio">View all <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((url) => (
               <ProjectCard key={url} project={{ url, category: "Web" }} />
             ))}
