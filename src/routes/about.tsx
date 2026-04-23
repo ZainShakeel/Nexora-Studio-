@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/section-heading";
+import { WhyNexora, HowWeWork } from "@/components/why-and-how";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -14,7 +15,14 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-const stack = ["WordPress", "React", "Angular", "Next.js", "Webflow", "Tailwind", "Google Ads", "Meta Ads"];
+const stack = ["WordPress", "React", "Angular", "Next.js", "Shopify", "Webflow", "Tailwind", "Google Ads", "Meta Ads"];
+
+const WHY = [
+  { title: "One accountable team", desc: "No hand-offs between agency silos — design, dev and ads all under one roof." },
+  { title: "Outcome-driven", desc: "We measure ourselves on pipeline and revenue, not vanity deliverables." },
+  { title: "Senior practitioners", desc: "The people pitching you are the people doing the work." },
+  { title: "Fast iteration", desc: "Weekly experiments, monthly compounding wins." },
+];
 
 function AboutPage() {
   return (
@@ -65,6 +73,9 @@ function AboutPage() {
           </div>
         </div>
       </section>
+
+      <WhyNexora items={WHY} />
+      <HowWeWork />
     </div>
   );
 }

@@ -14,22 +14,24 @@ export const Route = createFileRoute("/portfolio")({
   component: PortfolioPage,
 });
 
-const webProjects = [
+const websiteProjects = [
   "https://dodgerblue-bat-963544.hostingersite.com/",
   "https://ursolution.co/",
   "https://growtraq.com/",
   "https://ebillingworks.com/",
   "https://parvaaz.org.uk/",
   "https://thebrandsspot.com/",
+  "https://seekehr.com/",
+  "https://thejurisprime.com/",
+  "https://elleven.co/",
+  "https://softwarefinder.com/",
 ];
 
-const cpcProjects = [
-  "https://pm.softwarefinder.com/autodesk-bim-360/",
+const landingPages = [
   "https://erp.softwarefinder.com/migration-implementation-partners/",
   "https://erp.softwarefinder.com/migrate-from-any-microsoft-ax-to-sap-s-4-hana/",
   "https://demo.smartfind.io/clio-software/",
   "https://demo.smartfind.io/clio-vs-practice-panther-comparison-page/",
-  "https://demo.smartfind.io/legal-comparison/",
 ];
 
 function PortfolioPage() {
@@ -50,13 +52,13 @@ function PortfolioPage() {
           <div className="mb-10 flex items-end justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">01</p>
-              <h2 className="mt-2 text-3xl font-bold md:text-4xl">Web Development Projects</h2>
+              <h2 className="mt-2 text-3xl font-bold md:text-4xl">Website Projects</h2>
             </div>
             <p className="hidden max-w-md text-sm text-muted-foreground md:block">Production websites built and shipped end-to-end.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {webProjects.map((url) => (
-              <ProjectCard key={url} project={{ url, category: "Web" }} />
+            {websiteProjects.map((url) => (
+              <ProjectCard key={url} project={{ url, category: "Website" }} />
             ))}
           </div>
         </div>
@@ -67,13 +69,13 @@ function PortfolioPage() {
           <div className="mb-10 flex items-end justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">02</p>
-              <h2 className="mt-2 text-3xl font-bold md:text-4xl">CPC Landing Pages</h2>
+              <h2 className="mt-2 text-3xl font-bold md:text-4xl">Landing Pages</h2>
             </div>
             <p className="hidden max-w-md text-sm text-muted-foreground md:block">High-intent, conversion-optimized pages built for paid traffic.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {cpcProjects.map((url) => (
-              <ProjectCard key={url} project={{ url, category: "CPC" }} />
+            {landingPages.map((url) => (
+              <ProjectCard key={url} project={{ url, category: "Landing Page" }} />
             ))}
           </div>
         </div>

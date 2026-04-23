@@ -14,6 +14,9 @@ import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesWebDevelopmentRouteImport } from './routes/services.web-development'
+import { Route as ServicesPaidMediaRouteImport } from './routes/services.paid-media'
+import { Route as ServicesCreativeDesignRouteImport } from './routes/services.creative-design'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -40,20 +43,41 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesWebDevelopmentRoute = ServicesWebDevelopmentRouteImport.update({
+  id: '/web-development',
+  path: '/web-development',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesPaidMediaRoute = ServicesPaidMediaRouteImport.update({
+  id: '/paid-media',
+  path: '/paid-media',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesCreativeDesignRoute = ServicesCreativeDesignRouteImport.update({
+  id: '/creative-design',
+  path: '/creative-design',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/creative-design': typeof ServicesCreativeDesignRoute
+  '/services/paid-media': typeof ServicesPaidMediaRoute
+  '/services/web-development': typeof ServicesWebDevelopmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/creative-design': typeof ServicesCreativeDesignRoute
+  '/services/paid-media': typeof ServicesPaidMediaRoute
+  '/services/web-development': typeof ServicesWebDevelopmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +85,42 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/creative-design': typeof ServicesCreativeDesignRoute
+  '/services/paid-media': typeof ServicesPaidMediaRoute
+  '/services/web-development': typeof ServicesWebDevelopmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/portfolio' | '/services'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/portfolio'
+    | '/services'
+    | '/services/creative-design'
+    | '/services/paid-media'
+    | '/services/web-development'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/portfolio' | '/services'
-  id: '__root__' | '/' | '/about' | '/contact' | '/portfolio' | '/services'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/portfolio'
+    | '/services'
+    | '/services/creative-design'
+    | '/services/paid-media'
+    | '/services/web-development'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/portfolio'
+    | '/services'
+    | '/services/creative-design'
+    | '/services/paid-media'
+    | '/services/web-development'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,7 +128,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   PortfolioRoute: typeof PortfolioRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -116,15 +168,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/web-development': {
+      id: '/services/web-development'
+      path: '/web-development'
+      fullPath: '/services/web-development'
+      preLoaderRoute: typeof ServicesWebDevelopmentRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/paid-media': {
+      id: '/services/paid-media'
+      path: '/paid-media'
+      fullPath: '/services/paid-media'
+      preLoaderRoute: typeof ServicesPaidMediaRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/creative-design': {
+      id: '/services/creative-design'
+      path: '/creative-design'
+      fullPath: '/services/creative-design'
+      preLoaderRoute: typeof ServicesCreativeDesignRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
+
+interface ServicesRouteChildren {
+  ServicesCreativeDesignRoute: typeof ServicesCreativeDesignRoute
+  ServicesPaidMediaRoute: typeof ServicesPaidMediaRoute
+  ServicesWebDevelopmentRoute: typeof ServicesWebDevelopmentRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesCreativeDesignRoute: ServicesCreativeDesignRoute,
+  ServicesPaidMediaRoute: ServicesPaidMediaRoute,
+  ServicesWebDevelopmentRoute: ServicesWebDevelopmentRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   PortfolioRoute: PortfolioRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
