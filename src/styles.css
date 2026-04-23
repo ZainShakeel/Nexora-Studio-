@@ -145,5 +145,24 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .gradient-hero { background-image: var(--gradient-hero); }
+  .gradient-soft { background-image: var(--gradient-soft); }
+  .text-gradient {
+    background-image: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-card { box-shadow: var(--shadow-card); }
 }
