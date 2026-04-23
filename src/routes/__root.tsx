@@ -35,9 +35,13 @@ export const Route = createRootRoute({
       { name: "description", content: "Nexora Digital builds high-converting websites and runs data-driven marketing campaigns that generate quality leads." },
       { name: "author", content: "Nexora Digital" },
       { property: "og:title", content: "Nexora Digital — Driving Next-Level Growth" },
-      { property: "og:description", content: "Web development & digital marketing under one roof." },
+      { property: "og:description", content: "Nexora Digital builds high-converting websites and runs data-driven marketing campaigns that generate quality leads." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Nexora Digital — Driving Next-Level Growth" },
+      { name: "twitter:description", content: "Nexora Digital builds high-converting websites and runs data-driven marketing campaigns that generate quality leads." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ab00d795-6bc4-41cd-9e72-451415e15c5d/id-preview-c0109636--8fc875c2-0ebd-4f00-9099-1d70b289680e.lovable.app-1776970159184.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ab00d795-6bc4-41cd-9e72-451415e15c5d/id-preview-c0109636--8fc875c2-0ebd-4f00-9099-1d70b289680e.lovable.app-1776970159184.png" },
     ],
     links: [
       {
