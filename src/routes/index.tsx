@@ -123,7 +123,7 @@ function Index() {
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((p) => (
-              <ProjectCard key={p.url} project={{ url: p.url, title: p.title, category: "Web" }} />
+              <ProjectCard key={p.url} project={{ url: p.url, title: p.title, category: "Web" }} hideHost />
             ))}
           </div>
         </div>
