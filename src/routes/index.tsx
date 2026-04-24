@@ -141,11 +141,72 @@ function Index() {
       {/* Testimonials */}
       <Testimonials />
 
-      {/* Final CTA */}
-      <CtaBanner
-        title="Ready to grow your business?"
-        subtitle="Book a free 30-minute strategy call. No pitch — just a clear plan."
-      />
+      {/* FAQ */}
+      <FaqSection items={HOME_FAQS} />
+
+      {/* Final CTA with inline form */}
+      <CtaBannerWithForm />
     </div>
+  );
+}
+
+function CtaBannerWithForm() {
+  return (
+    <section className="py-20">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="relative grid items-center gap-10 overflow-hidden rounded-3xl gradient-hero px-8 py-12 shadow-elegant md:grid-cols-2 md:px-14">
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute -bottom-24 -left-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          <div className="relative">
+            <h2 className="text-3xl font-bold text-primary-foreground md:text-4xl">
+              Ready to grow your business?
+            </h2>
+            <p className="mt-3 max-w-xl text-base text-primary-foreground/90">
+              Tell us a bit about your project. We'll reply within one business day with a clear plan — no pitch, no pressure.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-primary-foreground/90">
+              <li>✓ Free 30-minute strategy session</li>
+              <li>✓ Custom roadmap delivered in 48 hours</li>
+              <li>✓ Senior team on every call</li>
+            </ul>
+          </div>
+          <form
+            className="relative rounded-2xl bg-background/95 p-6 shadow-elegant backdrop-blur"
+            onSubmit={(e) => {
+              e.preventDefault();
+              window.location.href = "/contact";
+            }}
+          >
+            <div className="space-y-3">
+              <input
+                required
+                type="text"
+                placeholder="Your name"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <input
+                required
+                type="email"
+                placeholder="Work email"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <input
+                type="text"
+                placeholder="Company"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <textarea
+                rows={3}
+                placeholder="Tell us about your project"
+                className="w-full resize-none rounded-lg border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <Button type="submit" size="lg" className="w-full gradient-hero text-primary-foreground shadow-elegant hover:opacity-90">
+                Book Free Consultation <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
