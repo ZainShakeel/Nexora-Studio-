@@ -4,6 +4,9 @@ import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { SERVICES } from "@/data/services";
+import { HeroParticles } from "@/components/hero-particles";
+import { Testimonials } from "@/components/testimonials";
+import { CtaBanner } from "@/components/cta-banner";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -16,11 +19,11 @@ const reasons = [
   { title: "Modern stack", desc: "React, Next.js, Webflow, WordPress — chosen for the job, not the hype." },
 ];
 
-const featured = [
-  "https://dodgerblue-bat-963544.hostingersite.com/",
-  "https://ursolution.co/",
-  "https://growtraq.com/",
-  "https://ebillingworks.com/",
+const featured: { url: string; title?: string }[] = [
+  { url: "https://thebrandsspot.com/" },
+  { url: "https://ebillingworks.com/" },
+  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders Chemical Shop" },
+  { url: "https://ursolution.co/" },
 ];
 
 function Index() {
@@ -28,9 +31,11 @@ function Index() {
     <div className="bg-background">
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 gradient-soft opacity-60" />
-        <div className="absolute -top-40 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-primary/20 blur-3xl" />
-        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+        <div className="absolute inset-0 -z-20 gradient-soft opacity-60" />
+        <div className="absolute -top-40 left-1/2 -z-20 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-primary/20 blur-3xl" />
+        <HeroParticles className="-z-10 opacity-70" />
+        <div className="absolute inset-0 -z-10 bg-background/40 backdrop-blur-[2px]" />
+        <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
           <div className="mx-auto max-w-4xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/80 px-4 py-1.5 text-xs font-semibold text-primary backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" /> Driving Next-Level Growth
@@ -41,7 +46,7 @@ function Index() {
               &amp; generate quality leads
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-              From modern web development to data-driven marketing, Nexora Digital helps businesses grow faster.
+              From modern web development to data-driven marketing, Nexora Studio helps businesses grow faster.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Button asChild size="lg" className="gradient-hero text-primary-foreground shadow-elegant hover:opacity-90">
@@ -109,7 +114,7 @@ function Index() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
               eyebrow="Selected work"
-              title={<>Recent <span className="text-gradient">projects</span></>}
+              title={<>Top <span className="text-gradient">projects</span></>}
               align="left"
             />
             <Button asChild variant="ghost" className="hover:bg-primary/10 hover:text-primary">
@@ -117,29 +122,21 @@ function Index() {
             </Button>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {featured.map((url) => (
-              <ProjectCard key={url} project={{ url, category: "Web" }} />
+            {featured.map((p) => (
+              <ProjectCard key={p.url} project={{ url: p.url, title: p.title, category: "Web" }} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="relative overflow-hidden rounded-3xl gradient-hero px-8 py-16 text-center shadow-elegant md:px-16">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute -bottom-24 -left-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-            <h2 className="relative text-3xl font-bold text-primary-foreground md:text-5xl">Ready to grow your business?</h2>
-            <p className="relative mx-auto mt-4 max-w-xl text-base text-primary-foreground/90 md:text-lg">
-              Book a free 30-minute strategy call. No pitch — just a clear plan.
-            </p>
-            <Button asChild size="lg" className="relative mt-8 bg-background text-foreground shadow-elegant hover:bg-background/90">
-              <Link to="/contact">Get Free Consultation <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* Final CTA */}
+      <CtaBanner
+        title="Ready to grow your business?"
+        subtitle="Book a free 30-minute strategy call. No pitch — just a clear plan."
+      />
     </div>
   );
 }
