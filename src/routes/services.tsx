@@ -4,13 +4,14 @@ import { SectionHeading } from "@/components/section-heading";
 import { WhyNexora, HowWeWork } from "@/components/why-and-how";
 import { ArrowRight, Check } from "lucide-react";
 import { SERVICES } from "@/data/services";
+import { CtaBanner } from "@/components/cta-banner";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Nexora Digital" },
+      { title: "Services — Nexora Studio" },
       { name: "description", content: "Website development, paid media & lead generation, and creative design services that drive measurable growth." },
-      { property: "og:title", content: "Services — Nexora Digital" },
+      { property: "og:title", content: "Services — Nexora Studio" },
       { property: "og:description", content: "Code + Campaigns. End-to-end growth services for ambitious brands." },
     ],
   }),
@@ -81,6 +82,7 @@ function ServicesPage() {
 
       <WhyNexora items={WHY_GLOBAL} />
       <HowWeWork />
+      <CtaBanner />
     </div>
   );
 }

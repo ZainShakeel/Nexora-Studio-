@@ -2,13 +2,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/section-heading";
 import { WhyNexora, HowWeWork } from "@/components/why-and-how";
+import { FaqSection } from "@/components/faq";
+import { CtaBanner } from "@/components/cta-banner";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Nexora Digital" },
-      { name: "description", content: "Nexora Digital is a tech-meets-marketing studio. We pair modern engineering with performance marketing to drive real growth." },
-      { property: "og:title", content: "About — Nexora Digital" },
+      { title: "About — Nexora Studio" },
+      { name: "description", content: "Nexora Studio is a tech-meets-marketing studio. We pair modern engineering with performance marketing to drive real growth." },
+      { property: "og:title", content: "About — Nexora Studio" },
       { property: "og:description", content: "Tech + Marketing = Growth." },
     ],
   }),
@@ -76,6 +78,20 @@ function AboutPage() {
 
       <WhyNexora items={WHY} />
       <HowWeWork />
+
+      <FaqSection
+        items={[
+          { q: "What kind of clients do you work with?", a: "Growth-stage SaaS, eCommerce, professional services and ambitious startups — anyone serious about turning their site and ads into a real growth engine." },
+          { q: "Where is Nexora Studio based?", a: "We're a distributed team across the US, UK and South Asia, with a head office address in Wilmington, Delaware. We work with clients globally." },
+          { q: "Do you offer ongoing retainers?", a: "Yes. Most engagements move into a monthly retainer covering iteration, campaigns, content and continuous CRO after the initial build." },
+          { q: "How is Nexora different from a typical agency?", a: "One accountable team for design, dev and ads — no hand-offs, no finger-pointing. Senior practitioners, transparent reporting and a sharp focus on the metrics that matter." },
+        ]}
+      />
+
+      <CtaBanner
+        title="Let's build your growth engine."
+        subtitle="One team for code, design and campaigns — accountable to your numbers."
+      />
     </div>
   );
 }
