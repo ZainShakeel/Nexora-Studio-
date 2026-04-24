@@ -6,7 +6,6 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import { HeroParticles } from "@/components/hero-particles";
 import { Testimonials } from "@/components/testimonials";
-import { CtaBanner } from "@/components/cta-banner";
 import { FaqSection } from "@/components/faq";
 
 export const Route = createFileRoute("/")({
