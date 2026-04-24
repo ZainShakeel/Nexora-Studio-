@@ -1,37 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
+import { CtaBanner } from "@/components/cta-banner";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Portfolio — Nexora Digital" },
-      { name: "description", content: "Selected work across web development and high-converting CPC landing pages." },
-      { property: "og:title", content: "Portfolio — Nexora Digital" },
-      { property: "og:description", content: "Real websites. Real campaigns. Real results." },
+      { title: "Portfolio — Nexora Studio" },
+      { name: "description", content: "Selected websites we've designed, developed and shipped for ambitious brands." },
+      { property: "og:title", content: "Portfolio — Nexora Studio" },
+      { property: "og:description", content: "Real websites. Real results." },
     ],
   }),
   component: PortfolioPage,
 });
 
-const websiteProjects = [
-  "https://dodgerblue-bat-963544.hostingersite.com/",
-  "https://ursolution.co/",
-  "https://growtraq.com/",
-  "https://ebillingworks.com/",
-  "https://parvaaz.org.uk/",
-  "https://thebrandsspot.com/",
-  "https://seekehr.com/",
-  "https://thejurisprime.com/",
-  "https://elleven.co/",
-  "https://softwarefinder.com/",
-];
-
-const landingPages = [
-  "https://erp.softwarefinder.com/migration-implementation-partners/",
-  "https://erp.softwarefinder.com/migrate-from-any-microsoft-ax-to-sap-s-4-hana/",
-  "https://demo.smartfind.io/clio-software/",
-  "https://demo.smartfind.io/clio-vs-practice-panther-comparison-page/",
+const websiteProjects: { url: string; title?: string }[] = [
+  { url: "https://thebrandsspot.com/" },
+  { url: "https://ebillingworks.com/" },
+  { url: "https://softwarefinder.com/" },
+  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders Chemical Shop" },
+  { url: "https://ursolution.co/" },
+  { url: "https://olfactory.shop/" },
+  { url: "https://parvaaz.org.uk/" },
+  { url: "https://seekehr.com/" },
+  { url: "https://thejurisprime.com/" },
+  { url: "https://elleven.co/" },
+  { url: "https://techpandas.co/" },
 ];
 
 function PortfolioPage() {
@@ -51,35 +46,23 @@ function PortfolioPage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10 flex items-end justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-primary">01</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-primary">Selected work</p>
               <h2 className="mt-2 text-3xl font-bold md:text-4xl">Website Projects</h2>
             </div>
             <p className="hidden max-w-md text-sm text-muted-foreground md:block">Production websites built and shipped end-to-end.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {websiteProjects.map((url) => (
-              <ProjectCard key={url} project={{ url, category: "Website" }} />
+            {websiteProjects.map((p) => (
+              <ProjectCard key={p.url} project={{ url: p.url, title: p.title, category: "Website" }} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border bg-muted/30 py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-10 flex items-end justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-primary">02</p>
-              <h2 className="mt-2 text-3xl font-bold md:text-4xl">Landing Pages</h2>
-            </div>
-            <p className="hidden max-w-md text-sm text-muted-foreground md:block">High-intent, conversion-optimized pages built for paid traffic.</p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {landingPages.map((url) => (
-              <ProjectCard key={url} project={{ url, category: "Landing Page" }} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <CtaBanner
+        title="Like what you see?"
+        subtitle="Let's design and ship a website that becomes your best salesperson."
+      />
     </div>
   );
 }
