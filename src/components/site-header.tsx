@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { SERVICES } from "@/data/services";
+import { Logo } from "@/components/logo";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -21,9 +22,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg gradient-hero shadow-elegant" />
-          <span className="text-lg font-bold tracking-tight">Nexora<span className="text-primary">.</span></span>
+        <Link to="/" className="flex items-center gap-2" aria-label="Nexora Studio home">
+          <Logo className="h-9 w-auto md:h-10" />
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           <Link to="/" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>Home</Link>
