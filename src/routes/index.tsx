@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import { HeroParticles } from "@/components/hero-particles";
 import { Testimonials } from "@/components/testimonials";
-import { CtaBanner } from "@/components/cta-banner";
+import { FaqSection } from "@/components/faq";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -22,8 +22,16 @@ const reasons = [
 const featured: { url: string; title?: string }[] = [
   { url: "https://thebrandsspot.com/" },
   { url: "https://ebillingworks.com/" },
-  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders Chemical Shop" },
+  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders" },
   { url: "https://ursolution.co/" },
+];
+
+const HOME_FAQS = [
+  { q: "What services does Nexora Studio offer?", a: "We offer three core services: Website Development & Designing, Paid Media & Lead Generation, and Social Media Creative Design — everything an ambitious brand needs to grow online." },
+  { q: "How long does a typical project take?", a: "Most websites ship in 3–6 weeks. Paid media campaigns are live within 7–10 days. Creative design retainers start the same week." },
+  { q: "Do you work with startups and enterprise clients?", a: "Yes. We partner with funded startups, growth-stage SaaS, ecommerce brands, and established enterprises across the US, UK and EU." },
+  { q: "What does engagement look like?", a: "Senior people on every call, weekly experiments, transparent reporting, and a dedicated Slack channel — no account-manager middlemen." },
+  { q: "How do I get started?", a: "Book a free 30-minute consultation. We'll review your goals and send a clear plan within 48 hours — no pitch, no pressure." },
 ];
 
 function Index() {
@@ -132,11 +140,72 @@ function Index() {
       {/* Testimonials */}
       <Testimonials />
 
-      {/* Final CTA */}
-      <CtaBanner
-        title="Ready to grow your business?"
-        subtitle="Book a free 30-minute strategy call. No pitch — just a clear plan."
-      />
+      {/* FAQ */}
+      <FaqSection items={HOME_FAQS} />
+
+      {/* Final CTA with inline form */}
+      <CtaBannerWithForm />
     </div>
+  );
+}
+
+function CtaBannerWithForm() {
+  return (
+    <section className="py-20">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="relative grid items-center gap-10 overflow-hidden rounded-3xl gradient-hero px-8 py-12 shadow-elegant md:grid-cols-2 md:px-14">
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute -bottom-24 -left-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          <div className="relative">
+            <h2 className="text-3xl font-bold text-primary-foreground md:text-4xl">
+              Ready to grow your business?
+            </h2>
+            <p className="mt-3 max-w-xl text-base text-primary-foreground/90">
+              Tell us a bit about your project. We'll reply within one business day with a clear plan — no pitch, no pressure.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-primary-foreground/90">
+              <li>✓ Free 30-minute strategy session</li>
+              <li>✓ Custom roadmap delivered in 48 hours</li>
+              <li>✓ Senior team on every call</li>
+            </ul>
+          </div>
+          <form
+            className="relative rounded-2xl bg-background/95 p-6 shadow-elegant backdrop-blur"
+            onSubmit={(e) => {
+              e.preventDefault();
+              window.location.href = "/contact";
+            }}
+          >
+            <div className="space-y-3">
+              <input
+                required
+                type="text"
+                placeholder="Your name"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <input
+                required
+                type="email"
+                placeholder="Work email"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <input
+                type="text"
+                placeholder="Company"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <textarea
+                rows={3}
+                placeholder="Tell us about your project"
+                className="w-full resize-none rounded-lg border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <Button type="submit" size="lg" className="w-full gradient-hero text-primary-foreground shadow-elegant hover:opacity-90">
+                Book Free Consultation <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
