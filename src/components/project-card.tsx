@@ -39,7 +39,7 @@ function shotUrl(url: string, w = 1280, h = 800) {
   return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${w}&h=${h}`;
 }
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, hideHost = false }: { project: Project; hideHost?: boolean }) {
   const title = project.title ?? titleFromUrl(project.url);
   return (
     <a
@@ -72,7 +72,9 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="flex items-center justify-between p-5">
         <div>
           <h3 className="font-semibold text-foreground">{title}</h3>
-          <p className="text-xs text-muted-foreground">{hostOf(project.url)}</p>
+          {!hideHost && (
+            <p className="text-xs text-muted-foreground">{hostOf(project.url)}</p>
+          )}
         </div>
         {project.category && (
           <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
