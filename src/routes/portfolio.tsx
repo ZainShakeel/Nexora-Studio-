@@ -19,7 +19,7 @@ const websiteProjects: { url: string; title?: string }[] = [
   { url: "https://thebrandsspot.com/" },
   { url: "https://ebillingworks.com/" },
   { url: "https://softwarefinder.com/" },
-  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders Chemical Shop" },
+  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders" },
   { url: "https://ursolution.co/" },
   { url: "https://olfactory.shop/" },
   { url: "https://parvaaz.org.uk/" },

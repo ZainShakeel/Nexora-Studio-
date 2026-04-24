@@ -7,6 +7,7 @@ import { SERVICES } from "@/data/services";
 import { HeroParticles } from "@/components/hero-particles";
 import { Testimonials } from "@/components/testimonials";
 import { CtaBanner } from "@/components/cta-banner";
+import { FaqSection } from "@/components/faq";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -22,8 +23,16 @@ const reasons = [
 const featured: { url: string; title?: string }[] = [
   { url: "https://thebrandsspot.com/" },
   { url: "https://ebillingworks.com/" },
-  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders Chemical Shop" },
+  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders" },
   { url: "https://ursolution.co/" },
+];
+
+const HOME_FAQS = [
+  { q: "What services does Nexora Studio offer?", a: "We offer three core services: Website Development & Designing, Paid Media & Lead Generation, and Social Media Creative Design — everything an ambitious brand needs to grow online." },
+  { q: "How long does a typical project take?", a: "Most websites ship in 3–6 weeks. Paid media campaigns are live within 7–10 days. Creative design retainers start the same week." },
+  { q: "Do you work with startups and enterprise clients?", a: "Yes. We partner with funded startups, growth-stage SaaS, ecommerce brands, and established enterprises across the US, UK and EU." },
+  { q: "What does engagement look like?", a: "Senior people on every call, weekly experiments, transparent reporting, and a dedicated Slack channel — no account-manager middlemen." },
+  { q: "How do I get started?", a: "Book a free 30-minute consultation. We'll review your goals and send a clear plan within 48 hours — no pitch, no pressure." },
 ];
 
 function Index() {

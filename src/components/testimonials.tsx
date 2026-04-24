@@ -20,24 +20,6 @@ const TESTIMONIALS = [
     quote:
       "From Shopify to Meta ads, every detail is handled. Reports are clear, calls are useful, and the work compounds month over month.",
   },
-  {
-    name: "James O'Connor",
-    role: "CEO, JurisPrime",
-    quote:
-      "They redesigned our site and shipped a new lead funnel in three weeks. We're booking demos from organic and paid traffic that we never used to see.",
-  },
-  {
-    name: "Maya Patel",
-    role: "Marketing Director, eBilling Works",
-    quote:
-      "Senior people on every call, clear scopes, weekly experiments. Nexora is the standard I now hold every other agency to.",
-  },
-  {
-    name: "Lucas Reinhardt",
-    role: "Founder, Elleven",
-    quote:
-      "Premium brand, premium engineering — and the conversion data to back it. Highly recommended for serious growth-stage teams.",
-  },
 ];
 
 export function Testimonials() {
