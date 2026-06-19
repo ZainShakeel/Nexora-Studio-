@@ -1,9 +1,7 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
 import { ChatWidget } from "../components/chat-widget";
-
-import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -28,51 +26,9 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nexora Studio — Driving Next-Level Growth" },
-      { name: "description", content: "Nexora Studio builds high-converting websites and runs data-driven marketing campaigns that generate quality leads." },
-      { name: "author", content: "Nexora Studio" },
-      { property: "og:title", content: "Nexora Studio — Driving Next-Level Growth" },
-      { property: "og:description", content: "Nexora Studio builds high-converting websites and runs data-driven marketing campaigns that generate quality leads." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Nexora Studio — Driving Next-Level Growth" },
-      { name: "twitter:description", content: "Nexora Studio builds high-converting websites and runs data-driven marketing campaigns that generate quality leads." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ab00d795-6bc4-41cd-9e72-451415e15c5d/id-preview-c0109636--8fc875c2-0ebd-4f00-9099-1d70b289680e.lovable.app-1776970159184.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ab00d795-6bc4-41cd-9e72-451415e15c5d/id-preview-c0109636--8fc875c2-0ebd-4f00-9099-1d70b289680e.lovable.app-1776970159184.png" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   return (
