@@ -232,10 +232,12 @@
   }
 
   .animate-float { animation: nx-float 6s ease-in-out infinite; }
+  .animate-float-slow { animation: nx-float 9s ease-in-out infinite; }
   .animate-gradient {
     background-size: 200% auto;
     animation: nx-gradient 6s linear infinite;
   }
+  .animate-marquee { animation: nx-marquee 32s linear infinite; }
 }
 
 @keyframes nx-float {
@@ -244,4 +246,8 @@
 }
 @keyframes nx-gradient {
   to { background-position: 200% center; }
+}
+@keyframes nx-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 }

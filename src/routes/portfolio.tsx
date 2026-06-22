@@ -1,68 +1,66 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ProjectCard } from "@/components/project-card";
-import { SectionHeading } from "@/components/section-heading";
-import { CtaBanner } from "@/components/cta-banner";
+import { PROJECTS } from "@/data/projects";
+import { ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Portfolio — Nexora Studio" },
+      { title: "Work — Nexora Studio" },
       { name: "description", content: "Selected websites we've designed, developed and shipped for ambitious brands." },
-      { property: "og:title", content: "Portfolio — Nexora Studio" },
-      { property: "og:description", content: "Real websites. Real results." },
     ],
   }),
   component: PortfolioPage,
 });
 
-const websiteProjects: { url: string; title?: string }[] = [
-  { url: "https://thebrandsspot.com/" },
-  { url: "https://ebillingworks.com/" },
-  { url: "https://softwarefinder.com/" },
-  { url: "https://dodgerblue-bat-963544.hostingersite.com/", title: "MoeenTraders" },
-  { url: "https://ursolution.co/" },
-  { url: "https://olfactory.shop/" },
-  { url: "https://parvaaz.org.uk/" },
-  { url: "https://seekehr.com/" },
-  { url: "https://thejurisprime.com/" },
-  { url: "https://elleven.co/" },
-  { url: "https://techpandas.co/" },
-];
+const shot = (url: string, w = 1200, h = 760) =>
+  `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${w}&h=${h}`;
 
 function PortfolioPage() {
   return (
-    <div className="bg-background">
-      <section className="border-b border-border bg-gradient-to-b from-primary/5 to-background py-20 md:py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading
-            eyebrow="Portfolio"
-            title={<>Work that <span className="text-gradient">ships &amp; converts</span></>}
-            subtitle="A selection of recent projects — each card opens the live site."
-          />
+    <div className="overflow-hidden">
+      {/* Hero */}
+      <section className="relative py-24 md:py-28">
+        <div className="absolute inset-0 -z-10 grid-dots opacity-[0.3]" />
+        <div className="absolute -top-24 left-1/3 -z-10 h-[420px] w-[420px] rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute top-10 right-0 -z-10 h-80 w-80 rounded-full bg-secondary/15 blur-3xl" />
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold text-secondary">Our work</span>
+          <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+            Work that <span className="text-gradient animate-gradient">ships &amp; converts</span>.
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+            A selection of recent websites and brands we've built end-to-end. Every card opens the live site.
+          </p>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Grid */}
+      <section className="pb-24">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-10 flex items-end justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-primary">Selected work</p>
-              <h2 className="mt-2 text-3xl font-bold md:text-4xl">Website Projects</h2>
-            </div>
-            <p className="hidden max-w-md text-sm text-muted-foreground md:block">Production websites built and shipped end-to-end.</p>
-          </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {websiteProjects.map((p) => (
-              <ProjectCard key={p.url} project={{ url: p.url, title: p.title, category: "Website" }} />
+            {PROJECTS.map((p, i) => (
+              <a key={p.url} href={p.url} target="_blank" rel="noopener noreferrer"
+                className={`group ring-gradient relative block overflow-hidden rounded-3xl glass shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:glow ${i % 5 === 0 ? "sm:col-span-2 lg:col-span-2" : ""}`}>
+                <div className={`relative overflow-hidden ${i % 5 === 0 ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
+                  <img src={shot(p.url, i % 5 === 0 ? 1600 : 1200, i % 5 === 0 ? 900 : 760)} alt={`${p.title} preview`} loading="lazy"
+                    className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
+                  <span className="absolute right-4 top-4 rounded-full glass px-3 py-1 text-xs font-medium text-foreground">{p.category}</span>
+                </div>
+                <div className="flex items-center justify-between p-5">
+                  <div>
+                    <h3 className="text-lg font-semibold">{p.title}</h3>
+                    <p className="text-xs text-muted-foreground">{new URL(p.url).hostname.replace(/^www\./, "")}</p>
+                  </div>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </a>
             ))}
           </div>
         </div>
       </section>
-
-      <CtaBanner
-        title="Like what you see?"
-        subtitle="Let's design and ship a website that becomes your best salesperson."
-      />
     </div>
   );
 }
